@@ -17,6 +17,7 @@ finally:
 def load_json_ley(data, key):
     try:
         result_dic = json.load(data)    # ValueError가 날수 있음
+        
     except ValueError as e:
         raise KeyError from e
     else:
