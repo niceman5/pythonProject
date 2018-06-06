@@ -1,0 +1,7 @@
+# git에 저장을 제외하는 옵션
+# .gitignore
+# 추가할 확장자명
+.idea/*
+*.log
+*.txt
+*.xml

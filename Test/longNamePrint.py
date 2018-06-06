@@ -1,7 +1,7 @@
 ##
 #  list에서 가장 긴 sring을 찾는 방식
 # 
-names = ['Cecilia','Lisa','Maria']
+names = ['Cecilia', 'Lisa', 'Maria']
 letters = [len(n) for n in names]
 
 long_name = ''
