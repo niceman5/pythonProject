@@ -1,0 +1,24 @@
+USE test
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'sp_call_test02') AND type in (N'P', N'PC'))
+    DROP PROCEDURE dbo.sp_call_test02
+GO
+
+CREATE PROCEDURE [dbo].[sp_call_test02]
+(
+    @STD_NO     INT
+,   @COUNT      INT     OUTPUT
+)
+AS
+SET NOCOUNT ON;
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+SELECT
+*
+FROM test.dbo.Student A
+WHERE A.[Std_No] < @STD_NO;
+
+SET @COUNT = @@ROWCOUNT;
+
+RETURN @COUNT + 3;
