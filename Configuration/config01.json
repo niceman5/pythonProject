@@ -1,0 +1,20 @@
+{
+  "DEFAULT":{
+    "ID":"aaaa",
+    "EMAIL":"aaaa@aaaa.com"
+  },
+  "TEST":{
+    "ID":"bbbbb",
+    "EMAIL":"bbbb@aaaa.com",
+    "USERS": [
+      {
+        "NAME":"김태훈",
+        "AGE":45
+      },
+      {
+        "NAME":"나현숙",
+        "AGE":45
+      }
+    ]
+  }
+}
