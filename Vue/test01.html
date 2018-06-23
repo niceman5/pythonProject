@@ -5,15 +5,20 @@
     <script src="https://unpkg.com/vue"></script>
 <head> 
 <body > 
-    <id="app">
-        {{ message }}
+    <div id="app">
+        <h2 v-text="name"></h2>
+        <img v-bind:src="imageSrc"/>
+        <input v-model="name"/>
     <div>
     <script>
-        var app = new Vue({
+        var model = {
+            message : "테스트 입니다.",
+            imageSrc:"http://sieun.kr/logo.png",
+            name:""
+        };
+        var vm01 = new Vue({
             el: '#app',
-            data: {
-                message: '안녕하세요 Vue!'
-            }
+            data: model
         })
     </script>        
 </body> 
