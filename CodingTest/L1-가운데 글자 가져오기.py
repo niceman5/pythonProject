@@ -10,23 +10,18 @@ qwer	we
 '''
 
 
-# def string_middle(str):
-#     # 함수를 완성하세요
-#     return str[(len(str)-1)//2:len(str)//2+1]
-
-def solution(s):
-    answer = ''
-    if(len(s) % 2 == 1):
-        answer = s[int(len(s) / 2):int(len(s) / 2) + 1]
-    else:
-        answer = s[int(len(s) / 2) - 1:int(len(s) / 2)+1]
-
+def solution(d, budget):
+    answer = 0
     return answer
+
 
 #
 # 메인 프로세스 시작
 #
 if __name__ == '__main__':
-    s = "qwer"
-    res = solution(s)
-    print(res)
+
+    d = [1,3,2,5,4]
+    budget = 9
+
+    answer = solution(d, budget)
+    print(answer)

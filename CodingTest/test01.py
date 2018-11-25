@@ -10,5 +10,8 @@
 #
 # lst=[1,3,4]
 # print(lst[-1:])
-s = "abcde"
-print(s[2:3])
+# s = "abcde"
+# print(s[2:3])
+
+d = [1,3,2,5,4]
+print(d)n                                               
