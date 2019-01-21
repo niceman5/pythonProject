@@ -53,3 +53,51 @@ c = collections.namedtuple('Coor', 'X,Y,Z')
 c1 = c(100,-100, 50)
 print('c1=', c1)
 print(c1.X)
+
+# deque 큐의 맨 앞과 맨 끝에서 추가와 삭제를 등록된 데이터 수와 상관없이 일정한 속도로 수행
+print('{:->100}'.format(''))
+deq = collections.deque('spam')
+print(deq, ' 인덱스로 접근 deq[1]=', deq[1])
+deq[1] = 'P'
+print(deq, ' 인덱스로 접근 deq[1]=', deq[1])
+
+deq = collections.deque(maxlen=5)       # deq의 최대 길이 지정
+for v in range(10):
+    deq.append(v)
+    if len(deq) >= 5:
+        print(list(deq), sum(deq)/5)
+
+deq = collections.deque('12345')
+print(deq)
+deq.rotate(3)
+print('rotate(3)=', deq)
+deq.rotate(-3)
+print('rotate(-3)=', deq)
+# deque객체의 첫 요소와 두번째 요소 변경
+deq = collections.deque('12345')
+print(deq)
+first = deq.popleft()
+deq.rotate(-1)
+deq.appendleft(first)
+deq.rotate(1)
+print(deq)
+
+import heapq
+# heapq이용하면 일련의 값으로 부터 최소값을 빠르게 구한다.
+print('{:->100}'.format(''))
+queue = []
+heapq.heappush(queue, 2)
+heapq.heappush(queue, 0)
+heapq.heappush(queue, 1)
+print('queue=', queue)
+print('heappop=', heapq.heappop(queue), queue)
+print('heappop=', heapq.heappop(queue), queue)
+print('heappop=', heapq.heappop(queue), queue)      # 최소값부터 삭제된다.
+
+queue=[1,2,3,4,5]
+print('queue=', queue)
+heapq.heapify(queue)            # 리스트객체의 heap요소를 정령하여 heapq로 삼는다.
+heapq.heappushpop(queue, 6)     # 리스트객체 heap에 item을 추가하고 최소값을 삭제하고 해당 값을 리턴한다. 선삽입 후삭제
+print('queue=', queue)          # heapreplace()는 석삭제 후삽입처리\...
+heapq.heappushpop(queue, 7)
+print('queue=', queue)
