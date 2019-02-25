@@ -47,22 +47,27 @@ it = itertools.chain([1,2,3], {'a','b','c','b'})
 for v in it:
     print(v, ' ', end='')
 print()
+print('{:->100}'.format(''))
 iters = ([1,2,3], {'a','b','c','b'})
 for c in itertools.chain.from_iterable(iters):
     print(c, ' ', end='')
 print()
+print('{:->100}'.format(''))
 
 # 값의 순열,조합 구하기. ABC로 조합되는 순열
 for v in itertools.permutations('ABC',2):
     print(v)
 print('')
+print('{:->100}'.format(''))
 for v in itertools.combinations('ABC',2):
     print(v)
 print('')
+print('{:->100}'.format(''))
 for v in itertools.combinations_with_replacement('ABC', 2):
     print(v)
 
 print('')
+print('{:->100}'.format(''))
 #
 for v in itertools.product('ABC', [1,2,3]):
     print(v)
@@ -77,3 +82,38 @@ for v in filter(is_even, [1,2,3,4,5,6,7]):
 items = [1, 0, 'Spam', '', [], [1], [2]]
 for v in filter(None, items):
     print(v)
+print(v)
+print('{:->100}'.format(''))
+# data와 selections 두개의 iterable객체를 지정하며 selections에서 얻은 값이 True면 data에서 얻은 같은 순번의 값을 반환
+for v in itertools.compress(['spam', 'egg', 'ham', '김치', '멸치'], [1,0,0,1,1,1,1]):
+    print(v)
+print(v)
+print('{:->100}'.format(''))
+
+# 등차수열 만들기
+for v in itertools.count(1, 3): # 초기값,값의 공차
+    if v > 10: break
+    print(v, ' ', end='')
+print(v)
+print('{:->100}'.format(''))
+
+# 지정한 값을 반복, 반복횟수에 None이면 무한반복
+print(list(itertools.repeat('a',5)))
+print(list(itertools.repeat('ab',5)))
+print('{:->100}'.format(''))
+
+# 지정한 iterable객체의 모든값을 반복하는 반복자를 생성
+for v in itertools.islice(itertools.cycle('abc'),0,5):
+    print(v)
+print(v)
+print('{:->100}'.format(''))
+
+# 여러 iterable객체의 요소로 튜플만들기. 객체중 하나가 값을 모두 반환하면 종료됨. 모든 객체로 부터 생성하려면 zip_longest사용
+for v in zip((1,2,3,4), ('a','b','c','d'), ('가','나','다')):
+    print(v)
+print(v)
+for v in itertools.zip_longest('abcdefg', '123', '가나다라마바', fillvalue='-'):
+    print(v)
+print(v)
+
+print('{:->100}'.format(''))
