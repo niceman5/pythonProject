@@ -12,8 +12,8 @@ from email import encoders
 import time
 import datetime
 
-gmail_user="kth@u-crm.com"
-gmail_pwd="gustnr35"
+gmail_user = "kth@u-crm.com"
+gmail_pwd = "gustnr35!"
 
 
 def send_gmail(to, subject, text, html, attach):
@@ -32,9 +32,8 @@ def send_gmail(to, subject, text, html, attach):
     # part.add_header('Content-Disposition','attachment; filename="%s"' % os.path.basename(attach))
     # msg.attach(part)
 
-    mailServer = smtplib.SMTP("smtp.gmail.com", 587)
+    mailServer = smtplib.SMTP_SSL("smtp.gmail.com", 465)
     mailServer.ehlo()
-    mailServer.starttls()
     mailServer.ehlo()
     mailServer.login(gmail_user, gmail_pwd)
     mailServer.sendmail(gmail_user, to, msg.as_string())
