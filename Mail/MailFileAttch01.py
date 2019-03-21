@@ -1,3 +1,8 @@
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import io
+
 def email_sup_teams(team_name, contact_list, file_attachemnt):
     message_list = []
     for jobs in file_attachemnt:
