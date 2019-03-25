@@ -13,7 +13,7 @@ import time
 import datetime
 
 gmail_user="kth@u-crm.com"
-gmail_pwd="gustnr35"
+gmail_pwd="gustnr35!"
 
 
 def send_gmail(to, subject, text, html, attach):
@@ -26,11 +26,11 @@ def send_gmail(to, subject, text, html, attach):
 
     # managing attachment
     # 이하 주석처리된 부분이 메일 첨부파일 발송을 위한 부분입니다. 첨부파일이 필요하시면 수정해서 쓰세요.
-    # part=MIMEBase('application','octet-stream')
-    # part.set_payload(open(attach, 'rb').read())
-    # Encoders.encode_base64(part)
-    # part.add_header('Content-Disposition','attachment; filename="%s"' % os.path.basename(attach))
-    # msg.attach(part)
+    part=MIMEBase('application','octet-stream')
+    part.set_payload(open(attach, 'rb').read())
+    encoders.encode_base64(part)
+    part.add_header('Content-Disposition','attachment; filename="%s"' % os.path.basename(attach))
+    msg.attach(part)
 
     mailServer = smtplib.SMTP("smtp.gmail.com", 587)
     mailServer.ehlo()
@@ -42,18 +42,18 @@ def send_gmail(to, subject, text, html, attach):
 
 
 def mainLoop():
-    title = "메일제목을 쓰세요."
-    # attach_file="send_mail.py"  <--------- 첨부파일 명입니다. 없으면 그대로 주석처리 해두세요.
+    title = "메일발송 테스트 입니다.1"
+    attach_file="sample.xlsx"   # <--------- 첨부파일 명입니다. 없으면 그대로 주석처리 해두세요.
 
     # f = open("text.txt", "r")  # <------ 메일 내용의 Text버전이 들어있는 파일입니다.
     # message = f.read()
     # f.close()
-    message = "메일 테스트 입니다."
+    message = "메일 테스트 입니다. 메일을 발송합니다."
 
     # f = open("html.html", "r")  # <------ 메일 내용의 HTML버전이 들어있는 파일입니다.
     # html = f.read()
     # f.close()
-    html = ""
+    html = "메일의 본문입니다."
 
     print("Program Ready")
     print("----------------------")
@@ -65,13 +65,14 @@ def mainLoop():
         email = email.strip('\n')
         email = email.strip(' ')
         email = email.strip('\t')
+
         if email == "":
             continue
         print("[" + str(datetime.datetime.now()) + "] Sending email to " + email + "...")
-        send_gmail(email, title, message, html, "")
-        print("[" + str(datetime.datetime.now()) + "] Complete... Waiting for 5 seconds.")
+        send_gmail(email, title, message, html, attach_file)
+        print("[" + str(datetime.datetime.now()) + "] Complete... Waiting for 3 seconds.")
         # 5초마다 보냅니다.
-        time.sleep(5)
+        time.sleep(3)
     print("Mails have just sent. The program is going to end.")
 
 # mail.py파일을 만드시고 위 내용을 적으신 후에,
