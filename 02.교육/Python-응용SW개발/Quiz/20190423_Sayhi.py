@@ -5,6 +5,7 @@ def say_hi(name:str, age:int) -> str:
 ##
 # Main Process 처리
 #
+
 if __name__ == '__main__':
     print(say_hi('Alex',32))
     print(say_hi('Frank', 68))
