@@ -14,9 +14,44 @@
 # flat_list([-1, [1, [-2], 1], -1]) == [-1, 1, -2, 1, -1]
 
 def flat_list(array):
-    return array
+    lst = []
+    for v in array:
+        if isinstance(v, list):
+            for v1 in flat_list(v):
+                lst.append(v1)
+        else:
+            lst.append(v)
+
+    return lst
+
+# def flat_list(array):
+#     ret_list = []
+#     for e in array:
+#         if type(e) == list:
+#             tmp_list = flat_list(e)
+#             ret_list.extend(tmp_list)
+#         else:
+#             ret_list.append(e)
+#     return ret_list
+
+
+# def flat_list(array):
+#     res = []
+#     for i in array:
+#         res.extend(flat_list(i) if isinstance(i, list) else [i])
+#     return res
+
+
+# def flat_list(l):
+#     r = []
+#     def f(l):
+#         for i in l:
+#             r.append(i) if type(i) is int else f(i)
+#     f(l)
+#     return r
 
 if __name__ == '__main__':
+
     assert flat_list([1, 2, 3]) == [1, 2, 3], "First"
     assert flat_list([1, [2, 2, 2], 4]) == [1, 2, 2, 2, 4], "Second"
     assert flat_list([[[2]], [4, [5, 6, [6], 6, 6, 6], 7]]) == [2, 4, 5, 6, 6, 6, 6, 6, 7], "Third"
