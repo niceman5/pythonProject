@@ -4,11 +4,12 @@
 
 
 def long_repeat(line):
-    """
-        length the longest substring that consists of the same char
-    """
-    # your code here
-    return 0
+
+    max_len = 0
+    for v in line:
+
+
+    return max_len
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
