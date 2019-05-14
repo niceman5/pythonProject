@@ -6,9 +6,16 @@
 def long_repeat(line):
 
     max_len = 0
+    tmp_len = 0
+    tmp_char = ''
     for v in line:
-
-
+        if tmp_char != v:
+            if tmp_len > max_len:
+                max_len = tmp_len
+            tmp_len, tmp_char = 0, v
+        else:
+            tmp_len += 1
+    print(max_len)
     return max_len
 
 if __name__ == '__main__':
