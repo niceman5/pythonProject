@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>02-03</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+   <div id="simple">
+   <!-- v-bind속성 html요소의 고유 속성을 지정해서 해당 데이터의 모델과 연결처리 해준다.
+   1)기본형식 : v-bind:속성 = "모델데이터"
+   	ex) v-bind:valuye="message"
+   		input의 value값을 모델데이터 message와 연결 처리해준다.
+    -->
+     <input id="a" type="text" v-bind:value="message">
+     <br />
+     <input type="text" v-bind:value="name">
+     <img v-bind:src="imagePath" />
+   </div>
+
+  <script type="text/javascript">
+    var model = {
+      message : 'v-bind 디렉티브',
+      name : '홍길동',
+      imagePath : "http://sample.bmaster.kro.kr/photos/61.jpg"
+    };
+
+    var simple = new Vue({
+      el : '#simple',
+      data : model
+    })
+  </script>
+</body>
+</html>

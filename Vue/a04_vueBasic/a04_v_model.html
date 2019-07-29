@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<link rel="stylesheet" href="../a00_com/w2ui-1.2.css">
+<style type="text/css">
+h1{text-align:center;}
+.input-group-text{width:100%;}
+.input-group-prepend{width:30%;}
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script src="../a00_com/jquery-ui.js"></script>
+<script src="../a00_com/w2ui-1.2.js"></script>
+<script src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var model={ message:"v-model 연습 [회원가입]",
+			id:"",		
+			pass:"",		
+			name:"",		
+			gender:"",		
+			hobbies:[]	
+		
+		};
+		var simple = new Vue({
+			el:".container",
+			data:model
+		});		
+	});
+</script>	
+</head>
+<body>
+<!-- 
+	<!-- 
+	회원 가입 창..
+	id : [   ]
+	pass : [   ]
+	성별 : ()남  ()여
+	이름 : [     ]
+	취미 내용 []낚시, []게임, 음악[] 기타[]
+	----------------
+	회원 가입내용 (가입창에 입력된 내용을 출력 처리)
+	@@@@@   
+	 -->
+
+<div class="container">
+	<h1 id="simple">{{message}}</h1>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">id</span>
+		</div>
+		<input type="text" class="form-control" name="id"
+		 v-model="id"/>
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">패스워드</span>
+		</div>
+		<input type="text" class="form-control"
+		 name="pass"  v-model="pass"/>
+	</div>	
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">이름</span>
+		</div>
+		<input type="text" class="form-control"
+		 name="name"  v-model="name"/>
+	</div>		
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">성별</span>
+		</div>
+		<input type="radio" class="form-control"
+		 name="gender" value="남"  v-model="gender"/>남
+		<input type="radio" class="form-control"
+		 name="gender"  value="여"   v-model="gender"/>여
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">취미내용</span>
+		</div>
+    <input type="checkbox"  class="form-control" value="낚시" v-model="hobbies">낚시,
+    <input type="checkbox"  class="form-control" value="게임" v-model="hobbies">게임,
+    <input type="checkbox"  class="form-control" value="음악" v-model="hobbies">음악,
+    <input type="checkbox"  class="form-control" value="기타" v-model="hobbies">기타,
+	</div>	
+	<hr>
+	<div class="input-group mb-3" id="show">
+		<h2>회원 가입 내용</h2>
+		<div class="input-group-prepend">
+			<span class="input-group-text" v-text="id"></span>
+			<span class="input-group-text" v-text="pass"></span>
+			<span class="input-group-text" v-text="name"></span>
+			<span class="input-group-text" v-text="gender"></span>
+			<span class="input-group-text" v-text="hobbies"></span>
+		</div>	
+	
+	</div>	
+			
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<link rel="stylesheet" href="../a00_com/w2ui-1.2.css">
+<style type="text/css">
+h1{text-align:center;}
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script src="../a00_com/jquery-ui.js"></script>
+<script src="../a00_com/w2ui-1.2.js"></script>
+<script src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	/*
+	로그인 화면 구성하고 
+	해당 id와 pass가 맞을때 인증되었습니다
+	아니면 미인증되었습니다. 바로 입력하는 순간 나올수 있게 처리하세요 
+	*/
+	$(document).ready(function(){
+		var model={ 
+			message:"v-model 연습 [회원가입]",
+			id:"",		
+			pass:""
+		};
+		var simple = new Vue({
+			el:".container",
+			data:model
+		});		
+	});
+</script>	
+</head>
+<body>
+<div class="container">
+	<h1 id="simple">{{message}}</h1>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">id</span>
+		</div>
+		<input type="text" class="form-control" name="id"
+		 v-model="id"/>
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">패스워드</span>
+		</div>
+		<input type="text" class="form-control"
+		 name="pass"  v-model="pass"/>
+	</div>
+	<p v-if="id=='aaa' && pass=='aaa'">인증되었습니다.</p>
+	<p v-else>미인증</p>
+				
+</div>
+</body>
+</html>

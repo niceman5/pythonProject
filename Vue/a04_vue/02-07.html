@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>02-07</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+  <div id="account">
+    잔고 : <input type="text" v-model="balance" /><br />
+    가격 : <input type="text" v-model="price" />
+    <!-- 
+    v-if="모델데이터 조건식"
+    해당 모델데이터 조건식이 true일때만 랜더링하여 화면에 출력한다.
+     -->
+    <br />
+    회원님의 등급 : 
+    <span v-if="balance >= 1000000">Gold</span>
+    <span v-else-if="balance >= 500000">Silver</span>
+    <span v-else-if="balance >= 200000">Bronze</span>
+    <span v-else>Basic</span>
+    <br />
+    가격 등급 :
+    <h2 v-if="price >= 100000"> 너무비싸요</h2>
+    <h2 v-else-if="price >= 50000">적정한 가격입니다.</h2 >
+    <h2 v-else-if="price >= 30000">조금 싼 가격입니다.</h2 >
+    <h2 v-else>싼 가격입니다.</h2 >
+  </div>
+  <script type="text/javascript">
+  var simple1 = new Vue({
+    el : '#account',
+    data : {
+        balance : 0,
+        price : 0
+    }
+  })
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<link rel="stylesheet" href="../a00_com/w2ui-1.2.css">
+<style type="text/css">
+h1{text-align:center;}
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script src="../a00_com/jquery-ui.js"></script>
+<script src="../a00_com/w2ui-1.2.js"></script>
+<script src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var num01Val = parseInt(Math.random()*8+2);
+		var num02Val = parseInt(Math.random()*9+1);
+		// 임의로 0~3 index 발생
+		var ranIdx=parseInt(Math.random()*4);
+		// 연산자 선택
+		var cal=[" + "," - "," X "," / "];
+		// cal[ranIdx] 연산자 선택..
+		// 결과값 선택
+		var rs=[num01Val+num02Val,num01Val-num02Val,num01Val*num02Val,num01Val/num02Val];
+		// 결과값 mapping
+		var sumVal = rs[ranIdx];
+		
+		var model={ message:"v-bind 예제 처리",
+			num01:num01Val,		
+			num02:num02Val,
+			calcu:cal[ranIdx],
+			sum:sumVal
+		};
+		//alert(model.calcu);
+		//alert(model.sum);
+		var simple = new Vue({
+			el:".container",
+			data:model
+		});
+	});
+/*
+ ex) 구구단의   임의의  값을
+  [    ]  X  [    ] = [    ]
+  출력을 하고, model에서 지정된 값을 출력되게 처리하세요..
+  [    ]  [select로 연산자도 사칙연사 임의 선택 X]  [    ] = [    ]
+ */	
+	
+</script>	
+</head>
+<body>
+<div class="container">
+	<h1 id="simple">{{message}}</h1>
+	<table class="table table-hover table-striped">
+		<thead class="thead-light">
+			<tr><th >연산자 화면 출력</th></tr>
+		</thead>
+		<tr><td>
+			<input v-bind:value="num01"  size="3" />
+			<select  v-bind:value="calcu" >
+				<option value=" + "> + </option>
+				<option value=" - "> - </option>
+				<option value=" X "> X </option>
+				<option value=" / "> / </option>
+			</select>
+			<input v-bind:value="num02"  size="3"/> =
+			<input v-bind:value="sum"  size="3" /> 
+		</td></tr>
+	</table>
+</div>
+</body>
+</html>

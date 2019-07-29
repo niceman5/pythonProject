@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<style type="text/css">
+    .input-group-text{width:100%;}
+    .input-group-prepend{width:30%;}
+    input[type="text"], label {
+        margin-bottom: 12px; padding: .4em; 
+        width: 95%;
+    }    
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script type="text/javascript" 
+	src="../a00_com/jquery-3.4.1.js"></script>
+<script  src="../a00_com/vue.min.js" type="text/javascript"></script>	
+<script src="../a00_com/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var model={msg:"화면 template"};
+		var viewmodel= new Vue({
+			el:".container",
+			data:model
+		});
+		$("#btn01").click(function(){
+			//alert("클릭!");
+			$("#dialog").dialog("open");
+		});		
+		$("#dialog").dialog({
+			autoOpen:false,
+			buttons:{
+				"등록":function(){
+					alert("등록");
+				},
+				"초기":function(){
+					$("#event-name").val("");
+					$("#event-date").val("");
+				},
+				"창닫기":function(){
+					$("#dialog").dialog("close");
+				}
+			},
+			modal:true
+		});
+		$("#event-date").datepicker({
+			dateFormat:'yy년 mm월 dd일',
+			numberOfMonths:3
+		});			
+	});
+</script>
+</head>
+<body>
+<!--  -->
+<div class="container" >
+<h1>{{msg}}</h1>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">이름</span>
+		</div>
+		<input type="text" class="form-control" name="name" placeholder="이름입력"/>
+	</div>
+	<div style="text-align:center;">
+		<input  type="button" id="btn01" class="btn btn-primary" value="일정생성" />
+	</div>	
+	<table class="table table-hover table-striped">
+		<col width="20%">
+		<col width="35%">
+		<col width="15%">
+		<col width="15%">
+		<col width="15%">
+		<thead class="thead-light">
+			<tr><th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th></tr>
+		</thead>	
+		<tr><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td></tr>
+		<tr><td></td><td></td><td></td><td></td><td></td></tr>
+	</table>		
+</div>	
+<div id="dialog" title="jQuery UI dialog">
+	<label for="event-name">일정 이름</label>
+	<input id="event-name" type="text" />
+	<label for="event-date">날짜</label>
+	<input id="event-date" type="text" />
+</div>
+</body>
+</html>

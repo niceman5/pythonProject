@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>03-05</title>
+<style>
+    #list  { width: 400px; border:1px solid black; border-collapse:collapse; }
+    #list td, #list th { border:1px solid black;  text-align:center; }
+    #list > thead > tr { color:yellow; background-color: purple; }
+    .divider { height:2px; background-color: gray; }
+</style>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div id="example">
+	<table id="list">
+		<thead>
+			<tr>
+                <th>상품명</th><th>가격</th><th>갯수</th>
+            </tr>
+		</thead>
+        <tbody id="contacts">
+             <tr v-for="(prod,index) in products">
+                <td>{{prod.item}}</td>
+                <td><input type="text" v-model="prod.price" /></td>
+                <td><input type="text" v-model="prod.cnt" /></td>                
+            </tr>
+    	</tbody>
+    </table>     
+    총 가격 합계 : <span>{{sum}}</span>
+</div>
+<script type="text/javascript">
+/*
+ * #관찰속성
+ 1.주로 시간이 필요한 비동기 ㅊ러리를 할때 주로 활용되;는 속성이다.
+ 2.기본형식
+ 	1) wattchP{
+ 		함수명 : function(매개변수){ 			
+ 		}
+ 		
+ 	}
+ */
+var vm = new Vue({
+    el : "#example",
+    data : { 
+    	sum:0,
+    	products : [
+    		{item:"아이스아메리카노", price:2500, cnt:1},
+    		{item:"뜨거운아메리카노", price:3000, cnt:1},
+    		{item:"카페라떼", price:4000, cnt:1}   		
+    	]
+    },
+    watch : {
+    	products : function(v) {
+            console.log('## products 변경')
+            var result = Number(v[0][1]) * Number(v[0][2]);
+            if (isNaN(result)) this.sum = 0;
+            else this.sum = result;
+        }
+    }
+})
+ /*
+주문목록
+1 [   ]  [ 가격 ]  [객수]
+2 [   ]  [ 가격 ]  [객수]
+3 [   ]  [ 가격 ]  [객수]
+ 총비용 @@@@
+ */
+</script>
+</body>
+</html>

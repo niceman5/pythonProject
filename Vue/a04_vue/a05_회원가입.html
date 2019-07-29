@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>02-05</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<!-- v-model의 배열에 대한 처리
+1. html요소객체 가운데 여러개의 데이터를 처리할때는 연결하는 데이터를 배열로 선언([]) 해당내용을 선택하거나
+  입력할때 모델데이터의 배열에 할당하게 한다.
+  
+    <input value="사과" v-model="fruits">사과, 
+    <input value="키위" v-model="fruits">키위
+    
+    fruits가 동일함으로 배열로 할당됨
+  
+-->
+<!--
+  회원가입창
+  id:[]
+  pass:[]
+  성별:남() 여()
+  이름:[]
+  취미내용:[]낚시, []게임, []음악, 기타 
+   -->
+ 
+  <div id="simple1">
+ ID :  <input type="text" value="id"  v-model="id" placeholder="id를 입력하세요" >
+  <br>
+  PW :  <input type="text" value="pw"  v-model="pw" placeholder="pw를 입력하세요" >
+  <br>
+  성별 : <input type="radiobutton" value="1"">
+  <br>
+  이름 :  <input type="text" value="name "  v-model="name" placeholder="이름 를 입력하세요" >
+    
+    <div>취미를 고르세요</div>
+    <input type="checkbox" value="낚시"  v-model="hobbies">낚시,
+    <input type="checkbox" value="게임"  v-model="hobbies">게임,
+    <input type="checkbox" value="등산"  v-model="hobbies">등산,
+    <input type="checkbox" value="음악"  v-model="hobbies">음악,
+    <input type="checkbox" value="기타"  v-model="hobbies">기타,
+  </div>
+  
+  <hr />
+  <div id="simple2">    
+     <span v-html="id"></span> 
+     <span v-html="pw"></span> 
+     <span v-html="name"></span>
+     <span v-html="hobbies"></span>
+  </div>
+  
+  <script type="text/javascript">
+  var model = {
+    id:'',
+    pw:'',
+    name:'',
+    hobbies : []
+  };
+
+  var simple1 = new Vue({
+      el : '#simple1', data : model
+  })
+
+  var simple2 = new Vue({
+      el : '#simple2', data : model
+  });
+  </script>
+</body>
+</html>

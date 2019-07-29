@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>03-05</title>
+<script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+<div id="example">
+    x : <input type='text' v-model="x" /><br />
+    y : <input type='text' v-model="y" /><br />
+    덧셈 결과 : {{sum}}
+</div>
+<script type="text/javascript">
+/*
+# 관찰 속성 (watch)
+1. 주로 긴 처리 시간이 필요한 비동기 처리를 할 때, 주로 활용되는 속성이다.
+2. 기본 형식..
+	1) watch:{
+		 함수명:function(매개변수){
+			 처리 프로세스...
+			 return 매개변수가 처리 프로세스를 통해서 return 값 선언;
+		 }
+		}
+ */
+var vm = new Vue({
+    el : "#example",
+    data : { x:0, y:0, sum:0 },
+    watch : {
+        x : function(v) {
+            console.log('## x 변경')
+            var result = Number(v) + Number(this.y);
+            if (isNaN(result)) this.sum = 0;
+            else this.sum = result;
+        },
+        y : function(v) {
+            console.log('## y 변경')
+            this.y = v;
+            var result = Number(this.x) + Number(v);
+            if (isNaN(result)) this.sum = 0;
+            else this.sum = result;
+        }
+    }
+})
+</script>
+</body>
+</html>
