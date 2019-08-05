@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-07</title>
+  <style>
+    .score { border:solid 1px black; }
+    .warning { background-color: orange; color:purple; }
+    .warnimage { width:18px; height:18px; top:5px; position:relative;   }
+  </style>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+	<!--
+		함수의 return조건 따른 style적용여부 처리././/
+		1.class선언  css
+		2.model data선언 : 기준이 되는 데이터를 선언한다,.
+		3.Vue갹체에 기준 처리함수 선언
+			1)computed : {함수명:function(){}}
+				- return 형식 {선언된 클래스명:적용여부-true/false}
+		4.View처리 내...
+			1)입력객체 자체에 대한 class적용
+				v-bind:class="함수명" : 함수에 return값에 따라서 해당 클래스가 적용여부가 나타난다.
+				ex) retyrn { warning:false  }
+			2)입력값에 따라서 변경되는 요소 객체...
+				v-show="조건" info하위함수에 따라서 warning이라는 클래스가 나올지 안나올지...
+	-->
+<div id="example">
+    <div>
+        <p>1부터 100까지만 입력가능합니다.</p>
+        <div>
+            점수 : <input type="text" class="score" 
+                v-model.number="score" v-bind:class="info" />
+            <img src="images/error.png" class="warnimage" v-show="info.warning" />
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : { 
+    score : 0
+  },
+  computed : {
+    info : function() {
+        if (this.score >= 1 && this.score <= 100) 
+            return { warning:false };
+        else 
+            return { warning:true };
+    }
+  }
+})
+</script>
+</body>
+</html>

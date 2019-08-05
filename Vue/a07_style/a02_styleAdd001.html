@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-05</title>
+  <style>
+    .set1 { background-color: aqua; color:purple; }
+    .set2 { text-align:center; width:120px; }
+    .set3 { border:sandybrown dashed 1px; }
+  </style>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+	<!--
+	div나 요소객체를 안녕하세요!! 선언하고
+	[] 중앙정렬 [] 오른쪽정렬 []왼쪽 정렬 [] boder만들
+	-->
+<div id="example">
+	<button id="btn1" v-bind:style="style1">     안녕하세요      </button>
+
+	<br><br><br>
+	<button id="btn1" @click="style1={textAlign:'center'}" >중앙정렬</button>
+	<button id="btn1" >오른쪽정렬</button>
+	<button id="btn1" >왼쪽정렬</button>
+	<button id="btn1" >boder만들기</button>
+    
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : { 
+	  style1 : { }
+   }
+})
+</script>
+</body>
+</html>

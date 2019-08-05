@@ -2,15 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>03-08</title>
+<title>04-09</title>
 <style>
     #list  { width: 400px; border:1px solid black; border-collapse:collapse; }
     #list td, #list th { border:1px solid black;  text-align:center; }
     #list > thead > tr { color:yellow; background-color: purple; }
+	/* v-cloak : 랜더링시 최종결과화면만 출력되게 한다.*/
     [v-cloak] { display: none; }
 </style>
 </head>
 <body>
+	<!--
+		해당 요소 객체의 설정으로 처
+	-->
     <div id="example"  v-cloak>
         <p>
         이름 : <input type="text" v-model="name" v-on:keyup="search"
@@ -30,7 +34,8 @@
                     <td>{{contact.address}}</td>
                 </tr>
             </tbody>
-        </table>
+		</table>
+		<!-- 화면에 처리중 화면 띄울때... --->
         <div v-show="isProcessing === true">조회중</div>
     </div>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -40,30 +45,59 @@
     var vm = new Vue({
         el : '#example',
         data : {
-            name : "",
-            isProcessing : false,
+			//검색할 내
+			name : "",
+			//ajax로 서버에서 데이터가 로딩 될 때까지..화면에 나타날 문자 내용을 위해 속성값 지
+			isProcessing : false,
+			//ajax를 통해 json데이터 객체형 배열로 가져와서 처리된 데이터를 말한다.
             contactlist : []
         },
         methods : {
+			//이름에 입력을 하고 처리되는 내용
+			//v-on:keyup="search" 입력순간...
             search : function(e) {
+				//alert(e.keyCode)
+				//13은 엔터키 
+				// == 	js에서 타입이 같지 않더라도 문자열과 데이터의 모양만 같으면 true로   
+				// === 	반드시 type과 데이터가 모두 동일해야 한다. 
                 if (e.keyCode === 13) {
-                    var val = e.target.value;
+					//e.target event가 일어나는 대상 객체(DOM)
+					//input입력통해 검색하는 내
+					var val = e.target.value;
+					
+					//2글자 이상 입력시 함수 호출....
                     if (val.length >= 2) {
+						//현재  vue갹체에서 method 로 선언된 함수를 호출한다.
                         this.fetchContacts();
                     } else {
+						//초기화
                         this.contactlist = [];
                     }
                 }
-            },
+			},
+			//비동기적으로 데이터를 가져오는 메서드....
             fetchContacts : function() {
-                this.contactlist = [];
+				//모델데이터 초기화 하고
+				this.contactlist = [];
+				//검색중이라고 표시하기 위해 속성값을 true로 처리
                 this.isProcessing = true;
                 var url = "http://sample.bmaster.kro.kr/contacts_long/search/" + this.name;
-                var vm = this;
-                fetch(url)
+				
+				var vm = this;	//this.:vue갹체의 this로 모델이나 
+				//fetch api호
+				//fetch(서버주소).then(함수1).then(함수2).catch(함수3);
+				//함수1 : 서버에 접속해서 promise 함수로 비동기적으로 json데이터를 가져온다.
+				//	1)매개변수 : response - 서버에서 넘겨온 반응 데이터.
+				//함수2 : 서버에 접속에 성공하고 정상적으로 데이터를 가져왔을때...
+				//	1)함수1의 return값을 가지고 데이터 처리
+				//		vm으로 선언한 모델 데이타에 받는 json데이터를 전송해 준다.
+				//	2)프로세스처리 : 전송이 끝났을때 vm.isProcessing = false; 전송중이라는 화면을 없애준다.
+				//함수3 : 서버에 접속에 문제나 데이터를 정상적으로 가져오지 못했을때...
+				fetch(url)
                     .then(function(response) {
                         return response.json()
                     }).then(function(json) {
+						//여기서 this직접쓰면 fetch함수내를 가르킴....그래서 vm으로 사
                         vm.contactlist = json;
                         vm.isProcessing = false;
                     }).catch(function(ex) {

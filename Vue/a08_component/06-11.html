@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-11</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<!--
+# component에서 데이터와 이벤트 처리..
+1. Vue.component() 선언하고, 사용하게 될 모델데이터와
+	이벤트를 정의 한다..
+	1) 컴포넌트에서 사용할 모델데이터는 함수로 return 하여야 반복적인
+		처리를 막을 수 있다.
+		ex) data:function(){
+				return 모델객체;
+			}
+	2) 	이벤트를 처리할 기능 메서드를 정의...
+	3) template 태그에 사용될 id값을 template 속성으로 정의한다.	
+2. template 태그 설정..
+	1) id : Vue.component() 에서 지정한 id값을 선언..
+	2) 사용할 model 데이터를  호출 처리..
+	3) event 처리.. : v-on:click="컴포넌트에서 정의된 이벤트.."
+3. View(화면 처리 )
+	1) 정의 된 component의 이름을 tag로 호출 처리한다.
+4. 기본 Vue 객체 생성 처리..	
+-->
+<template id='timeTemplate'>
+    <div>
+        <span>{{nowTS}}</span>
+		<button v-on:click="timeClick">현재 시간</button><br>
+		<span>{{ranNum}}</span>
+		<button v-on:click="ranNumClick">주사위 던지기!!</button>
+    </div>
+</template>
+<script type="text/javascript">
+var data = { nowTS : 0, ranNum:1 };
+Vue.component('time-component', {
+    template : '#timeTemplate',
+    data : function() {
+        return data;
+    },
+    methods : {
+        timeClick : function(e) {
+            this.nowTS = (new Date()).getTime();
+		},
+		ranNumClick:function(){
+			// 임의의 주사위 번호(1~6) 발생 해서, 모델 데이터 ranNum
+			// 에 할당 처리..
+			this.ranNum = parseInt(Math.random()*6+1);
+		}
+    }
+})
+</script>
+<body>
+    <div id="app">
+        <time-component></time-component>
+    </div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true;
+var v = new Vue({
+    el : '#app'
+})
+</script>
+</html>

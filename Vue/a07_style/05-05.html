@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-05</title>
+  <style>
+    .set1 { background-color: aqua; color:purple; }
+    .set2 { text-align:center; width:120px; }
+    .set3 { border:sandybrown dashed 1px; }
+  </style>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+	<!--
+		# 클래스로 선언된 내용을 적용여부를 모델의 속성 값 true/false로 처리
+		1. css class선언
+		2. vue요소 객체 안에
+			속성값 v-bind:class="{선언된 css클래스명:모델의속성-css적용여부}"
+			1)model에 model속성-css적용여부의 내용을 선언한다.
+		3.view의 요소(form하위 요소 객체의 value값으로 mapping할 요소)
+			1)v-model로 해당  model과 매핑하고 value로 model에서 일치할 데이터 선언
+
+	-->
+<div id="example">
+    <button id="btn1" v-bind:class="{ set1:s1, set2:s2, set3:s3 }">버튼1</button>
+    <p>
+        <input type="checkbox" v-model="s1" value="true" />set1 디자인<br/>
+        <input type="checkbox" v-model="s2" value="true" />set2 디자인<br/>
+        <input type="checkbox" v-model="s3" value="true" />set3 디자인<br/>
+    </P>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : { s1 : false, s2 : false, s3 : false }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="../a00_com/jquery-ui.css">
+<link rel="stylesheet" href="../a00_com/w2ui-1.2.css">
+<style type="text/css">
+	h1{text-align:center;}
+    .input-group-text{width:100%;}
+    .input-group-prepend{width:30%;}
+	.alignL{text-align:left;}
+	.alignR{text-align:right;}
+	.borMap{border:solid 1px blue;}
+</style>
+<script src="../a00_com/jquery.min.js"></script>
+<script src="../a00_com/popper.min.js"></script>
+<script src="../a00_com/bootstrap.min.js"></script>
+<script src="../a00_com/jquery-ui.js"></script>
+<script src="../a00_com/w2ui-1.2.js"></script>
+<script src="../a00_com/vue.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
+
+<script type="text/javascript">
+/*
+# style 속성처리..
+1. css 클래스 선언..
+2. model 데이터 선언 : 적용여부 true/false
+3. view 단에서 : css클래스와 model 연결. alignL:st1
+	1) 적용 대상 요소 객체 class bind : v-bind:style={클래스명:모델속성 }
+	2) 입력할 요소 객체  v-model="모델이름" value="기준 입력값 "
+*/
+	$(document).ready(function(){
+		var model={ message:"요소 속성 설정 ",
+			st1 : false, st2 : false, st3 : false 
+		};
+		var simple = new Vue({
+			el:".container",
+			data:model
+		});		
+	});
+/*
+ex) h1 div나 요소객체를  안녕하세요!! 선언하고,
+[]중앙정렬, []오른쪽 정렬, []border만들기.
+
+*/	
+</script>	
+</head>
+<body>
+<div class="container">
+	<h1 id="simple">{{message}}</h1>
+	<h1  v-bind:class="{ alignL:st1, alignR:st2, borMap:st3 }">안녕하세요</h1>
+	<input type="checkbox"  v-model="st1" value="true" />왼쪽 정렬<br>
+	<input type="checkbox"  v-model="st2" value="true" />오른쪽 정렬<br>
+	<input type="checkbox"  v-model="st3" value="true" />보더 처리 <br> 
+</div>
+</body>
+</html>

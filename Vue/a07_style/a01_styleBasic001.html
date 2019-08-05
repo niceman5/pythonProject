@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-02</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>	
+<div id="example">
+  <button id="a" v-bind:style="style1" @mouseover.stop="overEvent" 
+	  @mouseout.stop="outEvent">테스트</button>
+  <button id="b" v-bind:style="style2" @click="clickEvent">안녕하세요!!!</button>	  
+</div>
+<h1 v-bind:style="style01">샘플 문구1</h1>
+<!--
+	ex)배경색상 yellow, 글자색상 pink
+	1)7가지 h1, tr로 무지개 색상이 선언되어 있다가
+	2)마우스 over했을때 배경색상이 해당 색상으로 변경처리
+	마우스 아웃시 원래색상으로 변경
+-->
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : {
+    style1 : { backgroundColor:"pink", border:'solid 1px gray', 
+	  with:'100px', textAlign:'center' },
+	style2 : { backgroundColor:"yello", border:'solid 2px red', 
+	  with:'150px', height:'50px', textAlign:'center' },
+	style01 : { backgroundColor:"yello", fontColor:"pink" },	  
+  },
+  methods : {
+    overEvent : function(e) {
+      this.style1.backgroundColor = "purple";
+      this.style1.color = "yellow";
+    },
+    outEvent : function(e) {
+      this.style1.backgroundColor = "aqua";
+      this.style1.color = "black";
+	},
+	clickEvent:function(e){
+		this.style2.backgroundColor = "orange";
+		this.style2.color="red";
+	}
+  }
+})
+</script>
+</body>
+</html>

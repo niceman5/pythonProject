@@ -19,6 +19,9 @@
 </head>
 <body>
 <div id="example">
+	<!--이벤트가 전달되는 과정 로그로 확인
+		내부클릭시 외부까지 전달되는거 확인.		
+	-->
     <div id="outer" @click="outerClick">
         <div id="inner" @click="innerClick"></div>
     </div>

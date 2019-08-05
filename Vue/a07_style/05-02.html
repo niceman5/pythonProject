@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-02</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+	<!--
+		Vue에서 style적용처리
+		1.style선언 (model에서)
+			1) model에서 camel표기법으로 선언 
+				ex) data : {
+					style1:{ backgroundColor:"blue", textAlign:"center"}
+				}					
+			2) 함수로 선언
+				new Vue의 속성으로.......
+				methods : {
+					이벤트명:function(e){
+						this.style.backgroundColor="red";
+					}
+				}
+		2.정의된 style호출 
+			1) <요소 tag v-bind:style="모델에서 정의된 style">
+			2) <요소 tag @mouseover.stop="이벤트명">
+	-->
+<div id="example">
+  <button id="a" v-bind:style="style1" @mouseover.stop="overEvent" 
+	  @mouseout.stop="outEvent">테스트</button>
+  <button id="b" v-bind:style="style2" @click="clickEvent">안녕하세요!!!</button>	  
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : {
+    style1 : { backgroundColor:"pink", border:'solid 1px gray', 
+	  with:'100px', textAlign:'center' },
+	style2 : { backgroundColor:"yello", border:'solid 2px red', 
+      with:'150px', height:'50px', textAlign:'center' }
+  },
+  methods : {
+    overEvent : function(e) {
+      this.style1.backgroundColor = "purple";
+      this.style1.color = "yellow";
+    },
+    outEvent : function(e) {
+      this.style1.backgroundColor = "aqua";
+      this.style1.color = "black";
+	},
+	clickEvent:function(e){
+		this.style2.backgroundColor = "orange";
+		this.style2.color="red";
+	}
+  }
+})
+</script>
+</body>
+</html>

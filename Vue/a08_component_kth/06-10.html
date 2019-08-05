@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-10</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<!--
+	1.Vue.component()선언하고 서ㅏ용하게될 모델데이터와 이벤트를 정의 한다,
+		1) 컴포넌트에서 사용할 모바일데이터는 함수로 return하여야 반복적인 처리를 막을 수 있다.
+			ex) data : fuction() {
+				return 모델객;
+			}
+		2) 이벤트를 처리할 기능 메서드를 정의
+		3) 템플릿 tag에 사용될 id값을 템플릿 속성으로 정의한다.
+	
+	2. 템플릿 태그 설정
+		1) id : Vue.component()에서 지정한 id값을 선언...
+		2) 사용할 model 데이틀 호출 처리.
+		3) event처리...v-on:click="컴포넌트에서 정의된 이벤트....."
+	3. View(화면처리)
+		1) 정의된 component의 이름을 tag로 호출 처리한다.
+	4. 기본 Vue객체 생성처리 
+-->
+
+<template id='timeTemplate'>
+    <div>
+        <span>{{nowTS}}</span>
+        <button v-on:click="timeClick">현재 시간</button>
+    </div>
+</template>
+<script type="text/javascript">
+Vue.component('time-component', {
+    template : '#timeTemplate',
+    data : function() {
+        return { nowTS : 0 };
+    },
+    methods : {
+        timeClick : function(e) {
+            this.nowTS = (new Date()).getTime();
+        }
+    }
+})
+</script>
+<body>
+    <div id="app">
+        <time-component></time-component>
+        <time-component></time-component>
+    </div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true;
+var v = new Vue({
+    el : '#app'
+})
+</script>
+</html>

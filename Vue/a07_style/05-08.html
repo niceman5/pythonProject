@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>05-08</title>
+  <style>
+    .boxcolor { background-color:orange; }
+    .center {  width:200px; height:100px; line-height: 100px;
+        text-align: center; border: 1px solid gray; }
+	.boxcolor2 {background-color:yellow; }
+  </style>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+	<!--
+		//사용자 정의 tag
+		1.component : 사용자정의tag / 요소 객체를 정의해서 속성으로 가지고 있는 템플릿의 내용을 처리해준다.
+		2. 모델 데이터의 사용저 정의 class선언
+			사용자종의 모델 클래스 : {정의된 class : true}
+			boxstyle : { boxcolor : true }
+		3.사용자 정의  tag
+			화면 view단에서
+			v-bind:class="모델로 정의된 클래"
+			ex)v-bind:class="boxstyle"
+	-->
+<div id="example">
+	<center-box v-bind:class="boxstyle"></center-box>
+	<yellow-box v-bind:class="yellowStyle"></yellow-box>
+</div>
+<script type="text/javascript">
+
+Vue.component('center-box', {
+    template : '<div class="center">중앙에 위치</div>'
+})
+Vue.component('yellow-box', {
+    template : "<h2 align='center'>노랑색 h2 box</h2>"
+})
+var vm = new Vue({
+    el : "#example",
+    data : {
+		// 	
+	   boxstyle : { boxcolor : true },
+	   yellowStyle : { boxcolor2 : true }
+    }
+})
+</script>
+</body>
+</html>

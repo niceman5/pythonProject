@@ -31,7 +31,8 @@ var vm = new Vue({
         console.log("### OUTER CLICK")
         console.log("Event Phase : ", e.eventPhase);
         console.log("Current Target : ", e.currentTarget);
-        console.log("Target : ", e.target);
+		console.log("Target : ", e.target);
+		///.stopPropagation : DOM객체가 계층관계로 되어 있을때 event전달을 상위객체에 처리되는것을 막아 준다.
         e.stopPropagation();
     },
     innerClick : function(e) {

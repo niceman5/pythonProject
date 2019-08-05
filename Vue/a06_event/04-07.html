@@ -19,6 +19,9 @@
 </head>
 <body>
 <div id="example">
+	<!--
+		vue에서는 @이벤트.속성 : 해당 이벤트의 속성이 처리될때  
+	-->
     <div id="outer" @click.capture.stop="outerClick">
         <div id="inner" @click.stop="innerClick"></div>
     </div>

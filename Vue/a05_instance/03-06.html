@@ -15,16 +15,21 @@
 var vm = new Vue({
     el : "#example",
     data : { x:0, y:0 },
+    
+    //vue instance life사이클 통해서 처리하는 내용중 console log로 순서확인할수 있음
+    //수정전
     beforeUpdate : function() {
         console.log("before update")
-        console.log(this.x);
+        console.log(this.x +"|" +this.y);
     },
+    //x,y입력값을 입력하는 순간
     updated : function() {
         console.log("update")
         console.log(this.x);
     },
     computed : {
         sum : function() {
+        	console.log("computed")
             var result = Number(this.x) + Number(this.y);
             if (isNaN(result)) return  0;
             else return result;

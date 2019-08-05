@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-04</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<!--
+	1. template의 분리 처
+		1) <template를 속성 id로 선언 처
+	2. Vue.component("tag명", template:"정의된 id호출....")
+-->
+<template id="helloTemplate">
+    <div>hello world!!!</div>
+</template>
+<template id="user01Tmp">
+    <div>사용자정의 템플릿</div>
+</template>
+
+<script type="text/javascript">
+  Vue.component('hello-component', {
+    template : '#helloTemplate'
+  })
+	Vue.component('component2', {
+    	template : '#user01Tmp'
+  	})	
+</script>
+<body>
+  <div id="app">
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+	<hello-component></hello-component>	
+	<component2></component2>
+	<component2></component2>
+	<component2></component2>
+  </div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true;
+var v = new Vue({
+  el : '#app'
+})
+</script>
+</html>

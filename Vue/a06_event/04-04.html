@@ -12,6 +12,10 @@
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
+	<!--
+		v-on:이벤트명.이벤트속성 = "모델에 정의된  methods 속성의 함수 호출"
+		v-on:이벤트명 == @이벤트명   같음...
+	-->
 <div id="example" v-on:contextmenu.prevent="ctxStop">
     <a href="https://facebook.com" @click="confirmFB">페이스북</a>
 </div>
@@ -24,6 +28,7 @@ var vm = new Vue({
         },
         confirmFB : function(e) {
             if (!confirm("페이스북으로 이동할까요?")) {
+				//.preventDefault() 기본적으로 처리하는 이븐테를 막아주는 처리.
                 e.preventDefault();
             }
         }

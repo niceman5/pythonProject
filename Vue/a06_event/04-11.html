@@ -12,12 +12,22 @@
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
-<div id="example" v-on:contextmenu.prevent="ctxStop"
-    @mouseup.left="leftMouse" @mouseup.right="rightMouse">
+	<!--
+		마우스 클릭시 처리하는 이벤트. 
+		@mouseup.left 왼쪽 
+		@mouseup.right 오른쪽 
+	-->
+<div id="example" v-on:contextmenu.prevent="ctxStop" @mouseup.left="leftMouse" @mouseup.right="rightMouse">
+	<input @keyup="goDirect">
     <div>
       Left Click : 왼쪽으로<br /> 
       Right Click : 오른쪽으로
-    </div>
+	</div>
+	<!--style을 동적으로 매긴다....
+		v-bind:style = "json 형식으로 css속성값을 지정....."
+		1.기본 css형식이 아니고 프로그래밍의 json 객체형식으로 적용한다.
+		text-align -> textAlign
+	 -->
     <img src="images/foot.jpg" v-bind:style="{ position:'absolute', left: pos.left + 'px', top:pos.top +'px' }" />
 </div>
 <script type="text/javascript">
@@ -36,7 +46,22 @@ var vm = new Vue({
         rightMouse : function(e) {
           this.pos.left += 30;
           console.log("Move Right!!");
-        }
+		},
+		goDirect:function(e){
+			//alert(e.keyCode);
+			if(e.keyCode===39) {
+				this.pos.left += 30;
+			} 
+			if(e.keyCode===37) {
+				this.pos.left -= 30;
+			}
+			if(e.keyCode===38) {
+				this.pos.top -= 30;
+			}
+			if(e.keyCode===40) {
+				this.pos.top += 30;
+			}
+		}
     }
 })
 </script>

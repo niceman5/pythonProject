@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>04-01</title>
+  <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+      .layout1 { margin:30px 30px 30px 30px; }
+  </style>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<!--
+	ex)
+	숫자1 [ 2  ]    숫자2 [ 5  ]
+	더하기 뺄기 곱하기 나눗
+	2 + 5 = 7  
+-->
+<body>
+
+
+<div id="example" class="container layout1">
+	<p>
+		숫자1 <input type="text" v-model="num1" class="form-control" />
+		숫자2 <input type="text" v-model="num2" class="form-control" />
+	</p>
+    <p>
+        <button id="c1" @click="num3 = parseInt(num1) + parseInt(num2);ctxt='+'" class="btn btn-primary">덧셈</button>
+		<button id="c2" @click="num3 = parseInt(num1) - parseInt(num2);ctxt='-'" class="btn btn-primary">뺄쎔</button>
+		<button id="c3" @click="num3 = parseInt(num1) * parseInt(num2);ctxt='*'" class="btn btn-primary">곱셈</button>
+        <button id="c4" @click="num3 = parseInt(num1) / parseInt(num2);ctxt='/'" class="btn btn-primary">나눗셈</button>
+    </p>            
+    <h3>결과 : {{num1}} {{ctxt}} {{num2}} =  {{num3}}</h3>
+</div>
+<script type="text/javascript">
+var vm = new Vue({
+  el : "#example",
+  data : {
+	num1 : 0,
+	num2 : 0,
+	num3 : 0,
+	ctxt : "+"
+  }
+})
+</script>
+</body>
+</html>

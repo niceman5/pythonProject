@@ -11,29 +11,52 @@
   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
 </head>
 <body>
+	<!--
+		ex)
+		구매 목록 처리
+		물건명 : [ ]
+		가격 : [ ]
+		갯수 : [ ]
+		[구매] [초기값설정]
+		구매 클릭시 구매한 물건과 총비용 @@ 초기값설정 model-데이터 초기화
+
+	-->
 <div id="example" class="container layout1">
-    <p><input type="text" v-model="amount" class="form-control" /></p>
+	<p>물건명 <input type="text" v-model="item" class="form-control" /></p>
+	<p>가격 <input type="text" v-model="price" class="form-control" /></p>
+	<p>갯수 <input type="text" v-model="cnt" class="form-control" /></p>
+    
     <p>
 		<!--
 			v-on:click.onec : 해당요소객체에 이벤트가 한번한 발생하게 하는것을 말한다.
-		-->
-        <button id="create" v-on:click.once="specialEvent"
-           class="btn btn-primary">계좌 개설 10000원 이벤트</button>
-        <button id="deposit" v-on:click="deposit($event)" 
-            class="btn btn-primary">예금</button>
-        <button id="withdraw" v-on:click="withdraw" 
-            class="btn btn-primary">인출</button>
+		-->        
+        <button id="calc" v-on:click="calc()" class="btn btn-primary">구매</button>
+        <button id="init" v-on:click="init()" class="btn btn-primary">초기값설정</button>
+		
     </p>            
-    <h3>계좌 잔고 : {{balance}}</h3>
+	<h3>{{ctxt}} </h3>
+	
 </div>
 <script type="text/javascript">
 var vm = new Vue({
   el : "#example",
   data : {
-    amount : 0,
-    balance : 0,
+    item : '',
+	price : 0,
+	cnt : 0,
+	ctxt : ''
   },
   methods : {
+	  init : function(e) {
+		  this.item = '';
+		  this.price = 0;
+		  this.cnt = 0;
+		  this.ctxt = '';
+	  },
+	  calc : function(e) {
+		this.ctxt = this.item + '을 ' + this.price +'원에 ' + this.cnt + '개 구매하였습니다.';
+	  }
+	  /*
 	//vue에 정의된 함수를 호출하여 처리한다. 
     specialEvent : function(e) {
         this.balance += 10000;
@@ -55,7 +78,8 @@ var vm = new Vue({
         } else {
             this.balance -= amt;
         }
-    }
+	}
+	*/
   }
 })
 </script>

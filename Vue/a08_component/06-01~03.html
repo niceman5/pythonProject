@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>06-01</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<script type="text/javascript">
+/*
+# Vue.component 사용..
+1. component 선언..
+	1) Vue.componenet("tag이름", { templdate:"사용된 tag내용.."})
+2. 선언된 이름으로 view에서 호출 처리..	
+*/
+
+  Vue.component('hello-component', {
+    template : '<div>hello world!!!</div>'
+  })
+  Vue.component('goodday', {
+    template : '<h2>좋은 하루 </h2>'
+  })
+
+</script>
+<body>
+  <div id="app">
+    <hello-component></hello-component>
+    <hello-component></hello-component>
+	<hello-component></hello-component>
+	<goodday></goodday>
+	<goodday></goodday>
+	<goodday></goodday>
+
+  </div>
+</body>
+<script type="text/javascript">
+Vue.config.devtools = true; 
+// bug tracking 옵션 설정..
+var v = new Vue({
+  el : '#app'
+})
+</script>
+</html>
