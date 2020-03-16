@@ -8,5 +8,5 @@ async def handle(request):
 
 if __name__ == "__main__":
     app = web.Application()
-    app.router.add_get('/', handle)
+    app.routerq .add_get('/', handle)
     web.run_app(app)
