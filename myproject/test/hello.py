@@ -31,7 +31,7 @@ path	like the default but also accepts slashes
 '''
 @app.route('/')
 def hello_world():
-    return 'hello_world'
+    return 'hello_world! 반가워요'
 
 if __name__ == '__main__':
     # host지정
