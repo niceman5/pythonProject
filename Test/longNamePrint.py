@@ -16,6 +16,7 @@ for i in range(len(names)):
 print('--------------------------------------')
 print(long_name)        
 print(max_letter)
+print(max_letter)
 
 long_name = ''
 max_letter = 0
