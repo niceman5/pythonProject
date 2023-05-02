@@ -27,18 +27,19 @@ backup파일을 관리하는 프로세스
 """
 import tomllib
 import os
-global config    # 설정파일을 저장하는 전역 dict
 
-def config_read():
-    global config       # 전역변수사용
-    with open("E:\\pythonProject\\File\\backup_porcess\\config.toml", "rb") as f:
+def config_read():    
+    # with open("E:\\pythonProject\\File\\backup_porcess\\config.toml", "rb") as f:
+    with open("D:\\00.Dev\PythonProject\\File\\backup_porcess\\config.toml", "rb") as f:
         config = tomllib.load(f)
+        
     print("CONFIG FILE READ!")
+    return config    
 
 
 def main():
-    global config       # 전역변수사용
-    config_read()
+    config = config_read()  # 전역변수사용
+    
     print(config)      
         
     print('main_process')
