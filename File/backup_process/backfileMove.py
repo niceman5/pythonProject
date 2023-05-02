@@ -27,10 +27,11 @@ backup파일을 관리하는 프로세스
 """
 import tomllib
 import os
+import logging
 
 def config_read():    
     # with open("E:\\pythonProject\\File\\backup_porcess\\config.toml", "rb") as f:
-    with open("D:\\00.Dev\PythonProject\\File\\backup_porcess\\config.toml", "rb") as f:
+    with open('D:\\00.Dev\\PythonPorject\\File\\backup_process\\config.toml', "rb") as f:
         config = tomllib.load(f)
         
     print("CONFIG FILE READ!")
