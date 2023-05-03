@@ -4,17 +4,11 @@
 
 # 백업파일이 생성되는 ROOT 디렉토리
 [ROOT]
-# PATH = "E:\\pythonProject\\File\\backup_process\\files"
-PATH = "D:\\00.Dev\\PythonPorject\\File\\backup_process\\files"
+PATH = "E:\\pythonProject\\File\\backup_process\\files"
+# PATH = "D:\\00.Dev\\PythonPorject\\File\\backup_process\\files"
 
 
 # 일단위 FULL 백업파일이 이동될 디렉토리
 [DAILY]
-# PATH = "E:\\pythonProject\\File\\backup_process\\daily"
-PATH = "D:\\00.Dev\\PythonPorject\\File\\backup_process\\daily"
-
-
-# 로그파일이 기록될 위치
-[LOG_DIR]
-# PATH = "E:\\pythonProject\\File\\backup_process\\log"
-PATH = "D:\\00.Dev\\PythonPorject\\File\\backup_process\\log"
+PATH = "E:\\pythonProject\\File\\backup_process\\daily"
+# PATH = "D:\\00.Dev\\PythonPorject\\File\\backup_process\\daily"
