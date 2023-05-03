@@ -27,25 +27,33 @@ backup파일을 관리하는 프로세스
 """
 import tomllib
 import os
-import logging
+import log
 
+logger = log.get_logger()
+
+# 설정값을 읽는다.
 def config_read():    
-    # with open("E:\\pythonProject\\File\\backup_porcess\\config.toml", "rb") as f:
-    with open('D:\\00.Dev\\PythonPorject\\File\\backup_process\\config.toml', "rb") as f:
+    with open("E:\\pythonProject\\File\\backup_process\\config.toml", "rb") as f:
+    # with open('D:\\00.Dev\\PythonPorject\\File\\backup_process\\config.toml', "rb") as f:
         config = tomllib.load(f)
-        
-    print("CONFIG FILE READ!")
+    
+    logger.info("CONFIG FILE READ")        
     return config    
 
-
+# main함수
 def main():
-    config = config_read()  # 전역변수사용
+    config = config_read()  # 전역변수사용    
+    logger.info(config)              
+    logger.info('main_process')
     
-    print(config)      
+    dir_name = config['ROOT']['PATH']
+    logger.info(dir_name)
+    
+    for file_name in os.listdir(dir_name):
+        logger.info(file_name)
         
-    print('main_process')
 
 
 # main 시작점을 시작하게 한다.
 if __name__ == "__main__":
-	main()
+	main() 
