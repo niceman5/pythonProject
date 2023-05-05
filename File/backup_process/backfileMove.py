@@ -28,13 +28,14 @@ backup파일을 관리하는 프로세스
 import tomllib
 import os
 import log
+import datetime
 
 logger = log.get_logger()
 
 # 설정값을 읽는다.
 def config_read():    
-    with open("E:\\pythonProject\\File\\backup_process\\config.toml", "rb") as f:
-    # with open('D:\\00.Dev\\PythonPorject\\File\\backup_process\\config.toml', "rb") as f:
+    # with open("E:\\pythonProject\\File\\backup_process\\config.toml", "rb") as f:
+    with open('D:\\00.Dev\\PythonPorject\\File\\backup_process\\config.toml', "rb") as f:
         config = tomllib.load(f)
     
     logger.info("CONFIG FILE READ")        
@@ -46,11 +47,35 @@ def main():
     logger.info(config)              
     logger.info('main_process')
     
-    dir_name = config['ROOT']['PATH']
-    logger.info(dir_name)
+    root_path = config['ROOT']['PATH']      # 백업파일이 있는 path
+    daily_path = config['DAILY']['PATH']    # 일자별 full 백업이 복사될 path
+    base_dt = '{:%Y%m%d}'.format(datetime.datetime.now()) + '_040000'    
+    # test용코드 
+    base_dt = '20230502_041000'
+    logger.info(root_path)
     
-    for file_name in os.listdir(dir_name):
-        logger.info(file_name)
+    # 전체 파일 리스트를 구한다.
+    file_full_list = os.listdir(root_path)
+    file_list = []
+    
+    # BAK인 목록과 TRN목록을 구해 통합 리스트를 만든다.
+    file_list += [file for file in file_full_list if file.endswith(".BAK")]    
+    file_list += [file for file in file_full_list if file.endswith(".TRN")]
+    logger.info('전체 파일 리스트 ')
+    logger.info(file_list)
+    logger.info('처리 기준일시 :' + base_dt)
+    for file_name in file_list:        
+        name1 = file_name.split("(")
+        name2 = name1[1].split(")")
+        logger.info("처리대상 파일명 : %s  날짜값 : %s" % (file_name, name2[0]) )
+        
+        
+    
+    
+    # for file_name in os.listdir(root_path):
+    #     logger.info(file_name)
+    #     if file_name.endswith('.BAK') or  file_name.endswith('.TRN'):
+            
         
 
 
