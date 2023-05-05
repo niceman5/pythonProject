@@ -5,4 +5,4 @@
 *.log
 *.txt
 *.xml
-File/backup_process/__pycache__/log.cpython-311.pyc
+*.pyc
