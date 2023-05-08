@@ -16,6 +16,14 @@ bisect.insort_right(seq, 5)
 print('bisect.insort_right(seq, 5)=', seq)
 print('{:->100}'.format(''))
 
+result = []
+for score in [33, 99, 77, 70, 89, 90, 100]:
+    pos = bisect.bisect([60,70,80,90], score)
+    grade = 'FDCBA'[pos]
+    result.append((grade))
+
+print(result)
+
 # 수치배열을 효율적으로 다루는 array
 # import array
 
