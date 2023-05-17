@@ -21,3 +21,10 @@ PATH = "E:\\pythonProject\\File\\backup_process\\daily"
 [WEEKLY]
 PATH = "E:\\pythonProject\\File\\backup_process\\weekly"
 # PATH = "D:\\00.Dev\\PythonPorject\\File\\backup_process\\weekly"
+
+# Database접속정보
+[DATABASE]
+IP="220.95.213.77,1436"
+DB="UBIS"
+UID="upds_adm"
+PW="ucrm027194300!"
