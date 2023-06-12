@@ -1,12 +1,14 @@
+# 80라인에 세로선 설정 https://director-joe.kr/92 참조
 import sqlite3
 from enum import Enum
+
 
 class Dessert(Enum):
     ID = 0
     name = 1
     kal = 2
-    
-    
+
+
 # Decorator
 def constant(func):
     def func_set(self, value):
@@ -16,16 +18,21 @@ def constant(func):
         return func()
     return property(func_get, func_set)
 
+
 class _Dessert():
     @constant
     def ID():
         return 0
+
     @constant
     def NAME():
         return 1
+
     @constant
     def KAL():
         return 2
+
+
 # 메모리에다가 DB서버를 구성(연결)하기
 con = sqlite3.connect(':memory:')
 
@@ -61,16 +68,13 @@ for row in rows:
 
 
 dessert = _Dessert()
-print(dessert.ID , type(dessert.ID))
+print(dessert.ID, type(dessert.ID))
 for row in cur.execute("select * from dessert"):
     print(row, type(row))   # 튜플로 
     # print(Dessert.ID, type(Dessert.ID))
     print(row[dessert.ID], type(dessert.ID))
     print(row[dessert.NAME], type(dessert.NAME))
     print(row[dessert.KAL], type(dessert.KAL))
-    
-    
-
 
 cur.close()
 con.close()
@@ -89,7 +93,7 @@ print(cur.fetchone())
 
 
 # Larger example that inserts many records at a time
-# 한번에 다건 등록 
+# 한번에 다건 등록
 purchases = [('2006-03-28', 'BUY', 'IBM', 1000, 45.00),
              ('2006-04-05', 'BUY', 'MSFT', 1000, 72.00),
              ('2006-04-06', 'SELL', 'IBM', 500, 53.00),
@@ -102,7 +106,7 @@ for row in cur.execute('SELECT * FROM stocks ORDER BY price'):
     print(row)
 
 
-# update 
+# update
 # 방법 1
 c.execute("UPDATE table1 SET name=? WHERE id=?", ('NEW1', 1))
 

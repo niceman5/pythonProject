@@ -13,6 +13,6 @@ print('opacity2 :', my_values.get('opacity', [''])[0] or 0)
 print('opacity2 :', my_values.get('opacity', [''])[0])
 
 # 손쉽게 짝홀수 그룹을 나눌수 있음
-a = [1,2,3,4,5,6,7,8,9]
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 print(a[::2])
 print(a[1::2])
