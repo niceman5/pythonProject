@@ -57,7 +57,11 @@ def open_chatroom(chatroom_name: str = ''):
 
 
 def main():
-    lst = ['윤진수1', '황정현', '정우현', '문성현 교육팀', '성시하 운영팀', '한주희']
+    lst = [
+        '윤진수1', '황정현', '정우현', '문성현 교육팀', '성시하 운영팀',
+        '한주희', '운영팀 반정미'
+    ]
+
     # lst = ['황정현','성시하 운영팀']
     text = "카톡발송 테스트 메시지 입니다. 신경쓰지 마세요 {:%Y%m%d_%H:%M:%S}".format(datetime.datetime.now())
     print("start =  {:%Y%m%d_%H:%M:%S}".format(datetime.datetime.now()))
