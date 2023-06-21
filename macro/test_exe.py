@@ -11,6 +11,9 @@ import json
 import base64
 import log
 import psutil
+from tendo import singleton
+
+me = singleton.SingleInstance()
 
 logger = log.get_logger(name="EXEC_CALL", log_dir="c://upds_logs")
 
