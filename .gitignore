@@ -15,3 +15,5 @@
 *.pyd
 *.dll
 *.zip
+*.exe
+*.spec
