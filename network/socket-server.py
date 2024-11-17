@@ -1,33 +1,61 @@
 import socket
-import sys
+from _thread import *
 
-# Create a TCP/IP socket
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_sockets = []
 
-#define host
-host = "localhost"
+# Server IP and Port ##
+# HOST = socket.gethostbyname(socket.gethostname())
+HOST = "localhost"
+PORT = 9999
 
-# define the communication port
-port = 8080
 
-# Bind the socket to the port
-sock.bind((host, port))
+def threaded(client_socket, addr):
+    print('>> Connected by :', addr[0], ':', addr[1])
 
-#Listen for incoming connections
-sock.listen(1)
+    ## process until client disconnect ##
+    while True:
+        try:
+            ## send client if data recieved(echo) ##
+            data = client_socket.recv(1024)
 
-# Wait for a connection
-print('waiting for a connection')
+            if not data:
+                print('>> Disconnected by ' + addr[0], ':', addr[1])
+                break
 
-conn, client = sock.accept()
+            print('>> Received from ' + addr[0], ':', addr[1], data.decode())
 
-print('Connected by = ', client)
+            ## chat to client connecting client ##
+            ## chat to client connecting client except person sending message ##
+            for client in client_sockets:
+                if client != client_socket:
+                    client.send(data)
 
-while True:
-    data = conn.recv(1024)
-    if not data:
-        break
-    print("recv = " + repr(data))
-    conn.send(data)
+        except ConnectionResetError as e:
+            print('>> Disconnected by ' + addr[0], ':', addr[1])
+            break
 
-conn.close()
+    if client_socket in client_sockets:
+        client_sockets.remove(client_socket)
+        print('remove client list : ', len(client_sockets))
+
+    client_socket.close()
+
+print('>> Server Start with ip :', HOST)
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+server_socket.bind((HOST, PORT))
+server_socket.listen()
+
+try:
+    while True:
+        print('>> Wait')
+
+        client_socket, addr = server_socket.accept()
+        client_sockets.append(client_socket)
+        start_new_thread(threaded, (client_socket, addr))
+        print("참가자 수 : ", len(client_sockets))
+except Exception as e:
+    print('에러 : ', e)
+
+finally:
+    server_socket.close()
