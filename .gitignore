@@ -5,3 +5,15 @@
 *.log
 *.txt
 *.xml
+*.pyc
+*.exe
+*.nsi
+*.ico
+*.spec
+*.toc
+*.pyz
+*.pyd
+*.dll
+*.zip
+*.exe
+*.spec

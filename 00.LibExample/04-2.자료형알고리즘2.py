@@ -1,4 +1,8 @@
 # 이진 탐색 알고리즘 -> 리스트에서 사용
+# bisect_left(a, x)
+# 정렬된 a에 x를 삽입할 위치를 리턴해준다. x가 a에 이미 있으면 기존 항목의 앞 (왼쪽)의 위치를 반환한다.
+# bisect_right(a, x)
+# bisect_left와 거의 같은 함수인데, 이번에는 x가 a에 이미 있으면 기존 항목 뒤 (오른쪽)의 위치를 반환한다.
 import bisect
 seq = [0,1,2,2,4,5,6,7,8,9]
 print('seq=', seq)
@@ -11,6 +15,14 @@ print('bisect.insort_left(seq, 3)=', seq)
 bisect.insort_right(seq, 5)
 print('bisect.insort_right(seq, 5)=', seq)
 print('{:->100}'.format(''))
+
+result = []
+for score in [33, 99, 77, 70, 89, 90, 100]:
+    pos = bisect.bisect([60,70,80,90], score)
+    grade = 'FDCBA'[pos]
+    result.append((grade))
+
+print(result)
 
 # 수치배열을 효율적으로 다루는 array
 # import array
@@ -27,6 +39,8 @@ d = Dynasty.SILLA
 print(d)
 print(d.name, d.value)
 print('{:->100}'.format(''))
+
+# dict형임
 perfs = {
     '가나다':'123',
     '나다라':'2222',
@@ -35,6 +49,7 @@ perfs = {
 }
 print(perfs)
 print(list(perfs.items()))
+print(perfs['다라마'])
 
 import pprint
 pprint.pprint(perfs)
@@ -117,3 +132,30 @@ for v in itertools.zip_longest('abcdefg', '123', '가나다라마바', fillvalue
 print(v)
 
 print('{:->100}'.format(''))
+
+
+# namedtuple 
+from collections import namedtuple
+
+data = [
+    ('홍길동', 23, '010-1234-1234'),
+    ('김철수', 44, '010-1234-1243'),
+    ('이영희', 54, '010-2234-1243'),
+]
+print(data, type(data))
+# 선언한 데이터의 형식에 맞게 다음과 같이 namedtuple 자료형을 생성하자.
+Employee = namedtuple('Employee', 'name, age, cellphone')
+
+# 선언한 data의 요소인 튜플을 다음과 같이 namedtuple로 변환
+data = [Employee(emp[0], emp[1], emp[2]) for emp in data]
+
+# Employee 자료형의 _make() 함수를 사용하면 이 과정을 더 깔끔하게 처리할 수 있다
+data = [Employee._make(emp) for emp in data]
+
+print(data, type(data))
+
+emp = data[0]
+print(emp.name, emp.age, emp.cellphone)
+
+# 네임드 튜플은 값을 변경할 수 없는(immutable) 튜플의 특징을 그대로 가지므로 
+# 속성값을 변경할수 없다.

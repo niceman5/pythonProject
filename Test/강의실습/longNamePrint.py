@@ -1,5 +1,5 @@
 ##
-#  list에서 가장 긴 sring을 찾는 방식
+#  list에서 가장 긴 string을 찾는 방식
 # 
 names = ['Cecilia', 'Lisa', 'Maria']
 letters = [len(n) for n in names]
@@ -15,6 +15,7 @@ for i in range(len(names)):
 
 print('--------------------------------------')
 print(long_name)        
+print(max_letter)
 print(max_letter)
 
 long_name = ''

@@ -1,5 +1,5 @@
 import logging
-
+import datetime
 
 
 
@@ -23,6 +23,8 @@ if __name__ == '__main__':
     logger = logging.getLogger()        # create logger instance
     logger.setLevel(logging.DEBUG)      # handler level 
 
+    print(datetime.datetime.now())
+    print('{:%Y%m%d}'.format(datetime.datetime.now()))
 
     #  핸들러를 3개 만들어서 logger 에 추가
     test_formatter = logging.Formatter('%(asctime)s,%(name)s,%(levelname)s,%(message)s')
@@ -33,13 +35,13 @@ if __name__ == '__main__':
     logger.addHandler(stream_handler)
 
     #file에 로그를 기록
-    file_handler = logging.FileHandler('log.log')
+    file_handler = logging.FileHandler('log_{:%Y%m%d}.log'.format(datetime.datetime.now()))
     file_handler.setFormatter(test_formatter)
     file_handler.setLevel(logging.ERROR)
     logger.addHandler(file_handler)
 
     #file 로그에 기록2
-    file_debug_handler = logging.FileHandler('log_debug.log')
+    file_debug_handler = logging.FileHandler('log_debug_{:%Y%m%d}.log'.format(datetime.datetime.now()))
     file_debug_handler.setFormatter(test_formatter)
     file_debug_handler.setLevel(logging.DEBUG)
     logger.addHandler(file_debug_handler)
